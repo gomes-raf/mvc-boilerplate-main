@@ -1,23 +1,17 @@
 # Boilerplate
 ## Models, Controllers e Endpoints
-Models: Faz a conexão do projeto diretamente com o Banco de Dados e cria as funções CRUD como pode ser visto no trecho a seguir:
-```javascript
-    // Função de deletar do CRUD
-async delete(id) {
-    await db.query('DELETE FROM professor WHERE id = $1', [id]);
-}
-``` 
+Models: Faz a conexão do projeto diretamente com o Banco de Dados e cria as funções CRUD que são chamadas em Controllers.
 
+Controllers: É responsável por fazer a ligação entre o Models e o Views, recebendo a requisição e chamando o Models e logo após é chamado por Views.
 
-Controllers: É responsável por fazer a ligação entre o Models e o Views, recebendo a requisição e chamando o Models e logo após é chamado por Views, como podemos ver:
+View: Recebe os comandos do Controllers e transforma em algo interativo com o usuário.
 
+## JSON
+O envio e o recebimento de dados ocorre por meio da interação citada anteriormente entre Models, Controllers e Views. Um exemplo de rota é: 
 ```js
-// Deletar professor, código inserido em Controller
-exports.delete = async (req, res) => {
-  const { id } = req.params;
-  await Professor.delete(id);
-  res.redirect('/professores');
-};
+router.post('/delete/:id', controller.destroy);
 ```
+Essa rota consiste em deletar um aluno criado, puxando este comando de Controllers.
 
-Endpoint: São os pontos de entrada que o usuário pode interagir com o servidor, sendo dentro do projeto: adição de alunos, adição de cursos, editar aluno, editar curso, etc.
+## HTML
+O HTML permite criar e exibir as informações de uma forma primária e básica facilitando uma visão inicial do projeto.
